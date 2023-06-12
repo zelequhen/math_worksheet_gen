@@ -19,6 +19,13 @@ def validate_operation(operation: str) -> bool:
 
 class Problem:
     def __init__(self, operand_1: str, operand_2: str, operation='+'):
+        if not (
+            validate_operation(operation) and
+            validate_operand(operand_1) and
+            validate_operand(operand_2)
+        ):
+            raise ValueError(f'Invalid parameters: {operand_1} {operation} {operand_2}')
+
         self.op1 = operand_1
         self.op2 = operand_2
         self.operation = operation

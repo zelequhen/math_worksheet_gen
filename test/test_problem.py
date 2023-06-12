@@ -40,3 +40,14 @@ class TestProblem(unittest.TestCase):
         ]
         for operation in INVALID_OPERATIONS:
             self.assertFalse(problem.validate_operation(operation))
+    
+    def test_should_create_a_problem(self):
+        sample_problem = problem.Problem('1', '2', '+')
+
+        self.assertIsNotNone(sample_problem)
+
+    def test_should_not_create_a_problem(self):
+        self.assertRaises(
+            ValueError,
+            lambda: problem.Problem('1', 'five', 'add')
+        )
