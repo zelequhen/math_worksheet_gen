@@ -2,6 +2,7 @@ import problem
 
 import unittest
 
+
 class TestProblem(unittest.TestCase):
 
     def test_should_validate_operands(self):
@@ -31,7 +32,7 @@ class TestProblem(unittest.TestCase):
         ]
         for operation in VALID_OPERATIONS:
             self.assertTrue(problem.validate_operation(operation))
-    
+
     def test_should_detect_invalid_operations(self):
         INVALID_OPERATIONS = [
             None,
@@ -40,7 +41,7 @@ class TestProblem(unittest.TestCase):
         ]
         for operation in INVALID_OPERATIONS:
             self.assertFalse(problem.validate_operation(operation))
-    
+
     def test_should_create_a_problem(self):
         sample_problem = problem.Problem('1', '2', '+')
 

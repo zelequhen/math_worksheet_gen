@@ -8,14 +8,15 @@ def validate_operand(operand: str) -> bool:
     if operand is None or len(operand) == 0:
         return False
 
-    return VALID_OPERANDS_RE.match(operand) != None
+    return VALID_OPERANDS_RE.match(operand) is not None
 
 
 def validate_operation(operation: str) -> bool:
     if operation is None or len(operation) == 0:
         return False
 
-    return VALID_OPERATIONS_RE.match(operation) != None
+    return VALID_OPERATIONS_RE.match(operation) is not None
+
 
 class Problem:
     def __init__(self, operand_1: str, operand_2: str, operation='+'):
