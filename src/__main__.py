@@ -1,6 +1,5 @@
 import argparse
 
-import problem
 import problem_factory
 
 
@@ -30,5 +29,5 @@ if __name__ == "__main__":
 
     problems = [args.func(args.min, args.max) for _ in range(args.num)]
 
-    for problem in problems:
-        print(problem)
+    for prob in problems:
+        print(prob)
