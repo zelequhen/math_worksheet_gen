@@ -9,7 +9,12 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "-n", "--num", default=10, type=int, help="The number of math problems to make"
     )
-    parser.add_argument("-o", "--output", default=None, help="The location to output the PDF to, if not specified then stdout")
+    parser.add_argument(
+        "-o",
+        "--output",
+        default=None,
+        help="The location to output the PDF to, if not specified then stdout",
+    )
     subparsers = parser.add_subparsers(dest="problem_type")
     add_subparser = subparsers.add_parser("add")
     add_subparser.add_argument(
