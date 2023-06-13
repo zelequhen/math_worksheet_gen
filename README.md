@@ -5,12 +5,12 @@ This project creates PDFs of math worksheets based on command line criteria.
 ## Supported Operations
 
  * Addition
- * Subtraction
- * Division (with remainders)
- * Multiplication
- * Fraction Simplification
- * Exponential
- * Roots
+ * Subtraction (TODO)
+ * Division (with remainders) (TODO)
+ * Multiplication (TODO)
+ * Fraction Simplification (TODO)
+ * Exponential (TODO)
+ * Roots (TODO)
 
 ## Help
 

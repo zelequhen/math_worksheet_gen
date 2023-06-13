@@ -1,5 +1,6 @@
 import argparse
 
+import export
 import problem_factory
 
 
@@ -8,6 +9,7 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "-n", "--num", default=10, type=int, help="The number of math problems to make"
     )
+    parser.add_argument("-o", "--output", default=None, help="The location to output the PDF to, if not specified then stdout")
     subparsers = parser.add_subparsers(dest="problem_type")
     add_subparser = subparsers.add_parser("add")
     add_subparser.add_argument(
@@ -29,5 +31,8 @@ if __name__ == "__main__":
 
     problems = [args.func(args.min, args.max) for _ in range(args.num)]
 
-    for prob in problems:
-        print(prob)
+    if args.output is None:
+        for prob in problems:
+            print(prob)
+    else:
+        export.generate_pdf(problems, args.output)
