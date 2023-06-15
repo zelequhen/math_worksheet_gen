@@ -16,15 +16,21 @@ def generate_pdf(problems: List[problem.Problem], path: Optional[str] = None) ->
     col = 0
     col_width = pdf.epw / 3
     for prob in problems:
-        if pdf.get_y() + 0.5 >= pdf.eph:
+        if pdf.get_y() + 0.75 >= pdf.eph:
             pdf.set_y(1.15)
             if col > 2:
                 pdf.add_page()
                 col = 0
             else:
                 col += 1
-        pdf.set_x(-(3 - col) * col_width)
-        pdf.cell(col_width, 0.75, f"{prob} = ____", ln=1)
+        for i, line in enumerate(str(prob).split("\n")):
+            pdf.set_x(-(3 - col) * col_width)
+            if i != 0 and i == len(str(prob).split("\n")) - 1:
+                pdf.set_font(None, "U")
+            else:
+                pdf.set_font(None, "")
+            pdf.cell(col_width, 0.25, f"{line}", ln=1)
+        pdf.cell(col_width, 0.5, "", ln=1)
 
     if path is not None:
         try:

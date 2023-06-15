@@ -26,6 +26,13 @@ def create_parser() -> argparse.ArgumentParser:
     add_subparser.add_argument(
         "-M", "--max", default=9, type=int, help="The maximum value for an operand"
     )
+    add_subparser.add_argument(
+        "-v",
+        "--display_vertical",
+        action="store_true",
+        default=False,
+        help="Display the problem vertically instead of horizontally",
+    )
 
     return parser
 
@@ -34,8 +41,10 @@ if __name__ == "__main__":
     parser = create_parser()
     args = parser.parse_args()
 
-    problems = [args.func(args.min, args.max) for _ in range(args.num)]
-
+    problems = [
+        args.func(args.min, args.max, args.display_vertical) for _ in range(args.num)
+    ]
+    # import pdb; pdb.set_trace()
     if args.output is None:
         for prob in problems:
             print(prob)

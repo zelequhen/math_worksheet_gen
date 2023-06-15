@@ -32,3 +32,19 @@ class TestProblem(unittest.TestCase):
 
     def test_should_not_create_a_problem(self):
         self.assertRaises(ValueError, lambda: problem.Problem("1", "five", "add"))
+
+    def test_should_print_horizontally(self):
+        sample_problem = problem.Problem("123", "1234", "+")
+        expected = "123 + 1234 = "
+
+        actual = str(sample_problem)
+
+        self.assertEquals(expected, actual)
+
+    def test_should_print_vertically(self):
+        sample_problem = problem.Problem("123", "1234", "+", is_vertical=True)
+        expected = "   123\n+ 1234"
+
+        actual = str(sample_problem)
+
+        self.assertEquals(expected, actual)

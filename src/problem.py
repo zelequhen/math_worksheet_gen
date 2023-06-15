@@ -19,7 +19,9 @@ def validate_operation(operation: str) -> bool:
 
 
 class Problem:
-    def __init__(self, operand_1: str, operand_2: str, operation="+"):
+    def __init__(
+        self, operand_1: str, operand_2: str, operation="+", is_vertical=False
+    ):
         if not (
             validate_operation(operation)
             and validate_operand(operand_1)
@@ -30,6 +32,10 @@ class Problem:
         self.op1 = operand_1
         self.op2 = operand_2
         self.operation = operation
+        self.is_vertical = is_vertical
 
     def __str__(self):
-        return f"{self.op1} {self.operation} {self.op2}"
+        if self.is_vertical:
+            size = max(len(self.op1), len(self.op2))
+            return f"{self.op1.rjust(size+2)}\n{self.operation} {self.op2.rjust(size)}"
+        return f"{self.op1} {self.operation} {self.op2} = "
