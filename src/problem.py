@@ -1,7 +1,7 @@
 import re
 
 VALID_OPERANDS_RE = re.compile(r"[0-9]+(.[0-9]+)?")
-VALID_OPERATIONS_RE = re.compile(r"[+]")
+VALID_OPERATIONS_RE = re.compile(r"[+\-]")
 
 
 def validate_operand(operand: str) -> bool:

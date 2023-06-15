@@ -34,6 +34,31 @@ def create_parser() -> argparse.ArgumentParser:
         help="Display the problem vertically instead of horizontally",
     )
 
+    sub_subparser = subparsers.add_parser("sub")
+    sub_subparser.add_argument(
+        "--func", help=argparse.SUPPRESS, default=problem_factory.create_subtraction
+    )
+    sub_subparser.add_argument(
+        "-m", "--min", default=0, type=int, help="The minimum value for an operand"
+    )
+    sub_subparser.add_argument(
+        "-M", "--max", default=9, type=int, help="The maximum value for an operand"
+    )
+    sub_subparser.add_argument(
+        "-V",
+        "--display_vertical",
+        action="store_true",
+        default=False,
+        help="Display the problem vertically instead of horizontally",
+    )
+    sub_subparser.add_argument(
+        "-p",
+        "--positive_only",
+        action="store_true",
+        default=False,
+        help="Ensure that all problems have a non-negative solution",
+    )
+
     return parser
 
 
@@ -41,9 +66,7 @@ if __name__ == "__main__":
     parser = create_parser()
     args = parser.parse_args()
 
-    problems = [
-        args.func(args.min, args.max, args.display_vertical) for _ in range(args.num)
-    ]
+    problems = [args.func(**vars(args)) for _ in range(args.num)]
 
     if args.output is None:
         for prob in problems:
